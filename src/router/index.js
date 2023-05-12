@@ -55,6 +55,24 @@ export const constantRoutes = [
     }]
   },
 
+  // {
+  //   path: '/someModule/:page*',
+  //   component: Layout,
+  //   children: [{
+  //     path: 'index',
+  //     name: 'Dashboard',
+  //     component: () => import('@/views/dashboard/index'),
+  //     meta: { title: 'Dashboard', icon: 'dashboard' }
+  //   }]
+  // },
+
+  {
+    // /child/* 都指向ChildPage组件
+    path: '/someModule', // vue-router@4.x path的写法为：'/child/:page*'
+    name: 'child',
+    component: () => import('@/views/dashboard/index')
+  },
+
   {
     path: '/example',
     component: Layout,
