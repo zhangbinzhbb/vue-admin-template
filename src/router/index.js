@@ -68,7 +68,7 @@ export const constantRoutes = [
 
   {
     // /child/* 都指向ChildPage组件
-    path: '/someModule', // vue-router@4.x path的写法为：'/child/:page*'
+    path: '/someModule*', // vue-router@4.x path的写法为：'/child/:page*'
     name: 'child',
     component: () => import('@/views/dashboard/index')
   },
