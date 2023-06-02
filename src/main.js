@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import { preFetchLib, bindVueRuntime } from 'hel-micro'
+import Vue from "vue";
+import { preFetchLib, bindVueRuntime } from "hel-micro";
 
-bindVueRuntime({ Vue })
+bindVueRuntime({ Vue });
 
 // const fetchOptions = {
 //   async getSubAppAndItsVersionFn() {
@@ -15,13 +15,13 @@ bindVueRuntime({ Vue })
 // };
 
 // 本地联调
-// const enableCustom = !!window.location.port
+// const enableCustom = !!window.location.port;
 // const fetchOptions = {
 //   custom: {
-//     host: 'http://localhost:7001',
-//     enable: enableCustom
-//   }
-// }
+//     host: "http://localhost:7001",
+//     enable: enableCustom,
+//   },
+// };
 
 async function main() {
   // console.log('fetchOptions:', fetchOptions)
@@ -31,9 +31,11 @@ async function main() {
 
   // from user custom deploy location
   // see https://hel-eco.github.io/hel-tpl-remote-vue-comp/index.html
-  // await preFetchLib('lib-zhangbb', fetchOptions)
+  // await preFetchLib("lib-zhangbb-1", fetchOptions);
 
-  await import('./loadApp')
+  // await preFetchLib('lib-zhangbb')
+
+  await import("./loadApp");
 }
 
-main().catch(console.error)
+main().catch(console.error);

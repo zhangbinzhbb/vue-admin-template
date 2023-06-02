@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import { preFetchLib } from 'hel-micro'
+console.log(' test ')
 Vue.use(Router)
 
 /* Layout */
@@ -25,6 +26,16 @@ import Layout from '@/layout'
   }
  */
 
+const enableCustom = !!window.location.port
+const fetchOptions = {
+  custom: {
+    host: 'http://localhost:7001',
+    enable: enableCustom
+  }
+}
+
+// import dd from 'lib-zhangbb-1'
+// console.log('dd===>', dd)
 /**
  * constantRoutes
  * a base page that does not have permission requirements
@@ -47,12 +58,14 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
-    }]
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: 'Dashboard', icon: 'dashboard' }
+      }
+    ]
   },
 
   // {
@@ -66,11 +79,51 @@ export const constantRoutes = [
   //   }]
   // },
 
+  // {
+  //   // /child/* 都指向ChildPage组件
+  //   path: '/someModule*', // vue-router@4.x path的写法为：'/child/:page*'
+  //   name: 'child',
+  //   component: () => import('@/views/dashboard/index')
+  // },
+  // await preFetchLib('lib-zhangbb', fetchOptions)
+
+  // 第一种方式
   {
-    // /child/* 都指向ChildPage组件
-    path: '/someModule*', // vue-router@4.x path的写法为：'/child/:page*'
-    name: 'child',
-    component: () => import('@/views/dashboard/index')
+    path: '/someModule',
+    component: Layout,
+    redirect: '/someModule/index',
+    name: 'index',
+    meta: { title: 'someModule', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'index',
+        name: 'SomeModule',
+        component: async() => {
+          const mod = await preFetchLib('lib-zhangbb-1', fetchOptions)
+          console.log('mod===>', mod)
+          return mod.SomeModule
+        },
+        meta: { title: 'someModule', icon: 'table' }
+      },
+      {
+        path: 'test',
+        name: 'SomeModule',
+        component: async() => {
+          const mod = await preFetchLib('lib-zhangbb-1', fetchOptions)
+          return mod.SomeModuleTest
+        },
+        meta: { title: 'someModule', icon: 'table' }
+      },
+      {
+        path: 'child',
+        name: 'SomeModule',
+        component: async() => {
+          const mod = await preFetchLib('lib-zhangbb-1', fetchOptions)
+          return mod.SomeModuleChild
+        },
+        meta: { title: 'someModule', icon: 'table' }
+      }
+    ]
   },
 
   {
@@ -138,13 +191,15 @@ export const constantRoutes = [
             children: [
               {
                 path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+                component: () =>
+                  import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
                 meta: { title: 'Menu1-2-1' }
               },
               {
                 path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+                component: () =>
+                  import('@/views/nested/menu1/menu1-2/menu1-2-2'),
                 name: 'Menu1-2-2',
                 meta: { title: 'Menu1-2-2' }
               }
@@ -182,11 +237,12 @@ export const constantRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
 
 const router = createRouter()
 
