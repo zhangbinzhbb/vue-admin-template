@@ -1,25 +1,13 @@
 <template>
   <div class="dashboard-container">
-    <!-- <div class="dashboard-text">主界面name: {{ name }} </div> -->
-    <!-- <asynccomp /> -->
+    主界面name
   </div>
 </template>
 
 <script>
-// import { preFetchLib } from 'hel-micro'
+
 import { mapGetters } from "vuex";
-// import commp from 'lib-zhangbb'
-// console.log('commp===>', commp)
-// import { Hamburger } from 'lib-zhangbb'
-// import { Hamburger } from 'lib-zhangbb-1';
-// console.log('dd===>', Hamburger)
-// const enableCustom = !!window.location.port
-// const fetchOptions = {
-//   custom: {
-//     host: 'http://localhost:7001',
-//     enable: enableCustom
-//   }
-// }
+
 export default {
   name: "Dashboard",
   components: {
