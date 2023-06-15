@@ -6,9 +6,9 @@
 
 <script>
 export default {
-  name: "App",
-  created(){
-    console.log("=======123=========")
+  name: 'App',
+  created() {
+    console.log('=======主应用app=========')
   }
-};
+}
 </script>

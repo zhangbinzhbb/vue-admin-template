@@ -15,200 +15,40 @@ const fetchOptions = {
   }
 }
 
-// import dd from 'lib-zhangbb-1'
-// console.log('dd===>', dd)
-/**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
- */
+// json 生成路由配置
+const subAppComps = [
+  { path: 'index', compName: 'SomeModule' },
+  { path: 'test', compName: 'SomeModuleTest' },
+  { path: 'child', compName: 'SomeModuleChild' }
+]
+
+const someModuleRouteChildren = subAppComps.map(item => {
+  const { path, compName, name = 'SomeModule', title = 'someModule', icon = 'table' } = item
+  return {
+    path,
+    name,
+    component: async() => {
+      const mod = await preFetchLib('lib-zhangbb-1', fetchOptions)
+      return mod[compName]
+    },
+    meta: { title, icon }
+  }
+})
+
 export const constantRoutes = [
-  {
-    path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
-  },
-
-  {
-    path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
-  },
-
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        name: 'Dashboard',
-        component: () => import('@/views/dashboard/index'),
-        meta: { title: 'Dashboard', icon: 'dashboard' }
-      }
-    ]
-  },
-
-  {
-    path: '/someModule/*',
-    component: () => import('@/views/subRender/index'),
-  },
-
-  // {
-  //   // /child/* 都指向ChildPage组件
-  //   path: '/someModule*', // vue-router@4.x path的写法为：'/child/:page*'
-  //   name: 'child',
-  //   component: () => import('@/views/dashboard/index')
-  // },
-  // await preFetchLib('lib-zhangbb', fetchOptions)
 
   // 第一种方式
-  // {
-  //   path: '/someModule',
-  //   component: Layout,
-  //   redirect: '/someModule/index',
-  //   name: 'index',
-  //   meta: { title: 'someModule', icon: 'el-icon-s-help' },
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'SomeModule',
-  //       component: async() => {
-  //         const mod = await preFetchLib('lib-zhangbb-1', fetchOptions)
-  //         return mod.SomeModule
-  //       },
-  //       meta: { title: 'someModule', icon: 'table' }
-  //     },
-  //     {
-  //       path: 'test',
-  //       name: 'SomeModule',
-  //       component: async() => {
-  //         const mod = await preFetchLib('lib-zhangbb-1', fetchOptions)
-  //         return mod.SomeModuleTest
-  //       },
-  //       meta: { title: 'someModule', icon: 'table' }
-  //     },
-  //     {
-  //       path: 'child',
-  //       name: 'SomeModule',
-  //       component: async() => {
-  //         const mod = await preFetchLib('lib-zhangbb-1', fetchOptions)
-  //         return mod.SomeModuleChild
-  //       },
-  //       meta: { title: 'someModule', icon: 'table' }
-  //     }
-  //   ]
-  // },
-
   {
-    path: '/example',
+    path: '/someModule',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
+    redirect: '/someModule/index',
+    name: 'index',
+    meta: { title: 'someModule', icon: 'el-icon-s-help' },
+    children: someModuleRouteChildren
   },
 
-  // {
-  //   path: '/form',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'Form',
-  //       component: () => import('@/views/form/index'),
-  //       meta: { title: 'Form', icon: 'form' }
-  //     }
-  //   ]
-  // },
-
-  // {
-  //   path: '/nested',
-  //   component: Layout,
-  //   redirect: '/nested/menu1',
-  //   name: 'Nested',
-  //   meta: {
-  //     title: 'Nested',
-  //     icon: 'nested'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'menu1',
-  //       component: () => import('@/views/nested/menu1/index'), // Parent router-view
-  //       name: 'Menu1',
-  //       meta: { title: 'Menu1' },
-  //       children: [
-  //         {
-  //           path: 'menu1-1',
-  //           component: () => import('@/views/nested/menu1/menu1-1'),
-  //           name: 'Menu1-1',
-  //           meta: { title: 'Menu1-1' }
-  //         },
-  //         {
-  //           path: 'menu1-2',
-  //           component: () => import('@/views/nested/menu1/menu1-2'),
-  //           name: 'Menu1-2',
-  //           meta: { title: 'Menu1-2' },
-  //           children: [
-  //             {
-  //               path: 'menu1-2-1',
-  //               component: () =>
-  //                 import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-  //               name: 'Menu1-2-1',
-  //               meta: { title: 'Menu1-2-1' }
-  //             },
-  //             {
-  //               path: 'menu1-2-2',
-  //               component: () =>
-  //                 import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-  //               name: 'Menu1-2-2',
-  //               meta: { title: 'Menu1-2-2' }
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           path: 'menu1-3',
-  //           component: () => import('@/views/nested/menu1/menu1-3'),
-  //           name: 'Menu1-3',
-  //           meta: { title: 'Menu1-3' }
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'menu2',
-  //       component: () => import('@/views/nested/menu2/index'),
-  //       name: 'Menu2',
-  //       meta: { title: 'menu2' }
-  //     }
-  //   ]
-  // },
-
-  // {
-  //   path: 'external-link',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-  //       meta: { title: 'External Link', icon: 'link' }
-  //     }
-  //   ]
-  // },
-
   // 404 page must be placed at the end !!!
-  // { path: '*', redirect: '/404', hidden: true }
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () =>
