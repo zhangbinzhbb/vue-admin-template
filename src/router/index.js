@@ -6,6 +6,7 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
+import Home from '@/views/home'
 
 const enableCustom = !!window.location.port
 const fetchOptions = {
@@ -22,13 +23,19 @@ const subAppComps = [
   { path: 'child', compName: 'SomeModuleChild' }
 ]
 
-const someModuleRouteChildren = subAppComps.map(item => {
-  const { path, compName, name = 'SomeModule', title = 'someModule', icon = 'table' } = item
+const someModuleRouteChildren = subAppComps.map((item) => {
+  const {
+    path,
+    compName,
+    name = 'SomeModule',
+    title = 'someModule',
+    icon = 'table'
+  } = item
   return {
     path,
     name,
     component: async() => {
-      const mod = await preFetchLib('lib-zhangbb-1', fetchOptions)
+      const mod = await preFetchLib('lib-zhangbb-component', fetchOptions)
       return mod[compName]
     },
     meta: { title, icon }
@@ -36,16 +43,19 @@ const someModuleRouteChildren = subAppComps.map(item => {
 })
 
 export const constantRoutes = [
-
-  // 第一种方式
   {
-    path: '/someModule',
-    component: Layout,
-    redirect: '/someModule/index',
-    name: 'index',
-    meta: { title: 'someModule', icon: 'el-icon-s-help' },
-    children: someModuleRouteChildren
+    path: '/home',
+    component: Home
   },
+  // 第一种方式
+  // {
+  //   path: "/someModule",
+  //   component: Layout,
+  //   redirect: "/someModule/index",
+  //   name: "index",
+  //   meta: { title: "someModule", icon: "el-icon-s-help" },
+  //   children: someModuleRouteChildren,
+  // },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
