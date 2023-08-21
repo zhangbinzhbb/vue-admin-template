@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { preFetchLib } from 'hel-micro'
+// import { preFetchLib } from 'hel-micro'
 console.log(' test ')
 Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
-import Home from '@/views/home'
+// import Home from '@/views/home'
+import MicroAppTest from '@/views/microAppTest'
 
 const enableCustom = !!window.location.port
 const fetchOptions = {
@@ -23,29 +24,34 @@ const subAppComps = [
   { path: 'child', compName: 'SomeModuleChild' }
 ]
 
-const someModuleRouteChildren = subAppComps.map((item) => {
-  const {
-    path,
-    compName,
-    name = 'SomeModule',
-    title = 'someModule',
-    icon = 'table'
-  } = item
-  return {
-    path,
-    name,
-    component: async() => {
-      const mod = await preFetchLib('lib-zhangbb-component', fetchOptions)
-      return mod[compName]
-    },
-    meta: { title, icon }
-  }
-})
+// const someModuleRouteChildren = subAppComps.map((item) => {
+//   const {
+//     path,
+//     compName,
+//     name = 'SomeModule',
+//     title = 'someModule',
+//     icon = 'table'
+//   } = item
+//   return {
+//     path,
+//     name,
+//     component: async() => {
+//       const mod = await preFetchLib('lib-zhangbb-component', fetchOptions)
+//       return mod[compName]
+//     },
+//     meta: { title, icon }
+//   }
+// })
 
 export const constantRoutes = [
+  // {
+  //   path: '/home',
+  //   component: Home
+  // },
+
   {
-    path: '/home',
-    component: Home
+    path: '/microAppTest',
+    component: MicroAppTest
   },
   // 第一种方式
   // {

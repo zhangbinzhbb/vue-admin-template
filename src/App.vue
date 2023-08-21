@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// import { preFetchLib } from 'hel-micro'
 export default {
   name: 'App',
   created() {
