@@ -6,7 +6,7 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
-// import Home from '@/views/home'
+import Home from '@/views/home'
 import MicroAppTest from '@/views/microAppTest'
 
 const enableCustom = !!window.location.port
@@ -44,9 +44,25 @@ const subAppComps = [
 // })
 
 export const constantRoutes = [
+  {
+    path: '/home',
+    component: Home
+  },
+
   // {
-  //   path: '/home',
-  //   component: Home
+  //   path: "/",
+  //   component: Layout,
+  //   redirect: "/microAppTest",
+  //   name: "index",
+  //   meta: { title: "someModule", icon: "el-icon-s-help" },
+  //   children: [
+  //     {
+  //       path: "index",
+  //       name: "SomeModule",
+  //       component: () => import("@/views/someModule/index"),
+  //       meta: { title: "someModule", icon: "table" },
+  //     },
+  //   ],
   // },
 
   {
