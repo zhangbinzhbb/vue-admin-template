@@ -2,8 +2,8 @@
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
 
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -52,11 +52,12 @@ module.exports = {
     },
     externals: {
       // CDN 的 Element 依赖全局变量 Vue， 所以 Vue 也需要使用 CDN 引入
-      vue: 'Vue'
+      vue: 'Vue',
       // 属性名称 element-ui, 表示遇到 import xxx from 'element-ui' 这类引入 'element-ui'的，
       // 不去 node_modules 中找，而是去找 全局变量 ELEMENT
-      // 'element-ui': 'ELEMENT'
-    }
+      'element-ui': 'ELEMENT'
+    },
+    plugins: [new BundleAnalyzerPlugin()]
   },
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload
@@ -107,11 +108,11 @@ module.exports = {
             priority: 10,
             chunks: 'initial' // only package third parties that are initially dependent
           },
-          elementUI: {
-            name: 'chunk-elementUI', // split elementUI into a single package
-            priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
-            test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // in order to adapt to cnpm
-          },
+          // elementUI: {
+          //   name: 'chunk-elementUI', // split elementUI into a single package
+          //   priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+          //   test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // in order to adapt to cnpm
+          // },
           commons: {
             name: 'chunk-commons',
             test: resolve('src/components'), // can customize your rules

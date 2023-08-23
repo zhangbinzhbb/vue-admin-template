@@ -1,12 +1,20 @@
 <template>
   <div class="hello">
+    <el-row>
+      <el-button>默认按钮</el-button>
+      <el-button type="primary">主要按钮</el-button>
+      <el-button type="success">成功按钮</el-button>
+      <el-button type="info">信息按钮</el-button>
+      <el-button type="warning">警告按钮</el-button>
+      <el-button type="danger">危险按钮</el-button>
+    </el-row>
     <RemoteCompAsyncBetter name="loaded in codesandbox" />
   </div>
 </template>
 
 <script>
 // https://github.com/hel-eco/hel-tpl-remote-vue-comp
-import { preFetchLib, core } from "hel-micro";
+import { preFetchLib, core } from 'hel-micro'
 
 // 本地联调
 const enableCustom = !!window.location.port
@@ -26,7 +34,7 @@ const fetchOptions = {
   }
 }
 export default {
-  name: "HelloWorld",
+  name: 'HelloWorld',
   components: {
     // RemoteCompAsyncOld: async () => {
     //   const name = "hel-tpl-remote-vue-comps";
@@ -38,17 +46,16 @@ export default {
 
     // better way, see doc: https://v2.cn.vuejs.org/v2/guide/components-dynamic-async.html
     RemoteCompAsyncBetter: () => ({
-      component: new Promise(async (r, j) => {
+      component: new Promise(async(r, j) => {
         try {
           const mod = await preFetchLib('lib-zhangbb-component', fetchOptions)
-          console.log("mod===>",mod)
-          r(mod.SomeModule
-);
+          console.log('mod===>', mod)
+          r(mod.SomeModule)
         } catch (err) {
-          j(err);
+          j(err)
         }
-      }),
-    }),
-  },
-};
+      })
+    })
+  }
+}
 </script>
