@@ -8,6 +8,7 @@ Vue.use(Router)
 import Layout from '@/layout'
 import Home from '@/views/home'
 import MicroAppTest from '@/views/microAppTest'
+import MicroAppTestComp from '@/views/microAppTestComp'
 
 const enableCustom = !!window.location.port
 const fetchOptions = {
@@ -68,6 +69,11 @@ export const constantRoutes = [
   {
     path: '/microAppTest',
     component: MicroAppTest
+  },
+
+  {
+    path: '/microAppTestComp',
+    component: MicroAppTestComp
   },
   // 第一种方式
   // {
