@@ -28,8 +28,21 @@ const fetchOptions = {
      * 因此获取动作可能会报一个 404 not found 符合预期的行为，用户可设定 skipFetchHelMeta 为 true 跳过此步骤
      * 但建议加载线上模块时（非本地联调时），保持 skipFetchHelMeta 为 false 比较好，有利于提高模块加载速度（ 无html解析hel-meta.json过程 ）
      */
-    skipFetchHelMeta: true
-  }
+    skipFetchHelMeta: true,
+    apiPrefix: 'https://my-unpkg.com',
+  },
+  // hook: {
+  //   beforeAppendAssetNode(passCtx) {
+  //     const { url, setAssetUrl } = passCtx
+  //     debugger
+  //     // https://unpkg.com/remote-vue-project@1.0.6/hel_dist/css/27.aea1e7be.css
+  //     // --->
+  //     // https://cdn.jsdelivr.net/npm/remote-vue-project@1.0.6/hel_dist/css/27.aea1e7be.css
+  //     // const jsdelivrUrl = url.replace('http://localhost:7001/static', 'https://cdn.jsdelivr.net/npm')
+  //     const jsdelivrUrl = url.replace('https://unpkg.com', 'https://cdn.jsdelivr.net/npm')
+  //     setAssetUrl(jsdelivrUrl)
+  //   }
+  // }
 }
 
 async function main() {
@@ -42,7 +55,28 @@ async function main() {
   // see https://hel-eco.github.io/hel-tpl-remote-vue-comp/index.html
   await preFetchLib('lib-zhangbb-component', fetchOptions)
 
-  // await preFetchLib('lib-zhangbb')
+  // await preFetchLib('hel-tpl-remote-lib', fetchOptions)
+
+  // await preFetchLib('hel-tpl-remote-vue-comps', {
+  //   async getSubAppAndItsVersionFn() {
+  //     const res = await fetch('https://hel-eco.github.io/hel-tpl-remote-vue-comp/as_v1/hel-meta.json')
+  //     const meta = await res.json()
+  //     return meta
+  //   },
+  //   hook: {
+  //     beforeAppendAssetNode(passCtx) {
+  //       const { url, setAssetUrl } = passCtx
+  //       debugger
+  //       // https://unpkg.com/remote-vue-project@1.0.6/hel_dist/css/27.aea1e7be.css
+  //       // --->
+  //       // https://cdn.jsdelivr.net/npm/remote-vue-project@1.0.6/hel_dist/css/27.aea1e7be.css
+  //       // const jsdelivrUrl = url.replace('http://localhost:7001/static', 'https://cdn.jsdelivr.net/npm')
+  //       const jsdelivrUrl = url.replace('https://hel-eco.github.io/', 'https://cdn.jsdelivr.net/npm')
+  //       setAssetUrl(jsdelivrUrl)
+  //     }
+  //   },
+  //   skip404Sniff:true
+  // })
 
   await import('./loadApp')
 }
