@@ -7,6 +7,7 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
 import Home from '@/views/home'
+import ComponentRender from '@/views/componentRender'
 
 const enableCustom = !!window.location.port
 const fetchOptions = {
@@ -44,8 +45,17 @@ const someModuleRouteChildren = subAppComps.map((item) => {
 
 export const constantRoutes = [
   {
+    path: '/',
+    component: Home
+  },
+  {
     path: '/home',
     component: Home
+  },
+
+  {
+    path: '/render',
+    component: ComponentRender
   },
   // 第一种方式
   // {

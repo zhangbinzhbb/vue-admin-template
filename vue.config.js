@@ -57,7 +57,7 @@ module.exports = {
       // 不去 node_modules 中找，而是去找 全局变量 ELEMENT
       'element-ui': 'ELEMENT'
     },
-    plugins: [new BundleAnalyzerPlugin()]
+    // plugins: [new BundleAnalyzerPlugin()]
   },
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload

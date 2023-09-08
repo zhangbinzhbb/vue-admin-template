@@ -1,21 +1,11 @@
 <template>
   <div class="hello">
-    <el-row>
-      <el-button>默认按钮</el-button>
-      <el-button type="primary">主要按钮</el-button>
-      <el-button type="success">成功按钮</el-button>
-      <el-button type="info">信息按钮</el-button>
-      <el-button type="warning">警告按钮</el-button>
-      <el-button type="danger">危险按钮</el-button>
-      <el-button @click="toRender">to Render component</el-button>
-    </el-row>
-    <Table />
     <RemoteCompAsyncBetter name="loaded in codesandbox" />
   </div>
 </template>
 
 <script>
-import Table from './table.vue'
+
 // https://github.com/hel-eco/hel-tpl-remote-vue-comp
 import { preFetchLib, core } from 'hel-micro'
 
@@ -39,7 +29,6 @@ const fetchOptions = {
 export default {
   name: 'HelloWorld',
   components: {
-    Table,
     // RemoteCompAsyncOld: async () => {
     //   const name = "hel-tpl-remote-vue-comps";
     //   const mod = await preFetchLib(name);
@@ -54,19 +43,12 @@ export default {
         try {
           const mod = await preFetchLib('lib-zhangbb-component', fetchOptions)
           console.log('mod===>', mod)
-          r(mod.Element)
+          r(mod.App)
         } catch (err) {
           j(err)
         }
       })
     })
-  },
-  methods: {
-    toRender() {
-      this.$router.push({
-        path: '/render'
-      })
-    }
   }
 }
 </script>
