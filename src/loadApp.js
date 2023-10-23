@@ -35,6 +35,8 @@ if (process.env.NODE_ENV === 'development') {
 
 Vue.config.productionTip = false
 
+
+console.log('router===>', router)
 new Vue({
   el: '#app',
   router,

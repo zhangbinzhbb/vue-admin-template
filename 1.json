@@ -1,0 +1,499 @@
+{
+  "id": "sample-table",
+  "size": "middle",
+  "bordered": true,
+  "tableLayout": "auto",
+  "sticky": true,
+  "rowSelection": true,
+  "editable": true,
+  "virtual": false,
+  "scroll": {
+      "y": 500
+  },
+  "rowKey": "id",
+  "header": {
+      "style": {
+          "margin": "0",
+          "padding": "12px 0"
+      },
+      "elements": [
+          {
+              "type": "display-column-selector",
+              "selectorButtonType": "primary",
+              "selectorButtonText": "选择展示列"
+          },
+          {
+              "type": "spacer",
+              "style": {
+                  "width": "20px"
+              }
+          },
+          {
+              "type": "text",
+              "span": "flex-auto",
+              "align": "flex-start",
+              "text": "商品列表"
+          },
+          {
+              "type": "layout-selector",
+              "selectorButtonType": "primary",
+              "selectorButtonText": "布局模式"
+          },
+          {
+              "type": "slot",
+              "slot": "header-slot-sample"
+          },
+          {
+              "type": "search",
+              "wrapperStyle": {
+                  "width": 360
+              },
+              "align": "flex-end",
+              "placeholder": "请输入关键字",
+              "allowClear": true,
+              "searchButtonText": "搜索",
+              "searchKeys": [
+                  {
+                      "label": "商品",
+                      "value": "goods"
+                  },
+                  {
+                      "label": "广告",
+                      "value": "advert"
+                  }
+              ],
+              "searchKeyDefaultValue": "goods"
+          },
+          {
+              "type": "insert-button",
+              "align": "flex-end",
+              "insertButtonText": "添加商品",
+              "showIcon": true
+          }
+      ]
+  },
+  "pagination": {
+      "pageSize": 20,
+      "showTotal": "总共 {{total}} 条目",
+      "size": "default",
+      "position": "bottomRight",
+      "showQuickJumper": true,
+      "showSizeChanger": true,
+      "pageSizeOptions": [
+          3,
+          5,
+          10,
+          20,
+          50,
+          100
+      ]
+  },
+  "columns": [
+      {
+          "key": "18acb8f606f-106e",
+          "title": {
+              "body": "商品图名",
+              "header": {
+                  "elements": [
+                      {
+                          "type": "text",
+                          "span": "flex-auto",
+                          "align": "flex-start",
+                          "text": "⌚"
+                      }
+                  ]
+              },
+              "footer": {
+                  "elements": [
+                      {
+                          "type": "text",
+                          "span": "flex-auto",
+                          "align": "flex-start",
+                          "text": "🖼️"
+                      }
+                  ]
+              }
+          },
+          "width": 140,
+          "align": "center",
+          "verticalAlign": "middle",
+          "dataIndex": "",
+          "component": "group",
+          "options": {
+              "layout": [
+                  1,
+                  1
+              ],
+              "horizontalAlign": "center",
+              "verticalAlign": "middle",
+              "gutter": [
+                  8,
+                  8
+              ],
+              "wrap": false,
+              "items": [
+                  {
+                      "key": "mock_1_1",
+                      "title": "",
+                      "component": "image",
+                      "options": {
+                          "imageWidth": 86,
+                          "imageHeight": 86
+                      },
+                      "dataIndex": "demoPic"
+                  },
+                  {
+                      "key": "mock_1_2",
+                      "title": "",
+                      "component": "text",
+                      "options": {
+                          "mode": "single"
+                      },
+                      "dataIndex": "name"
+                  }
+              ]
+          }
+      },
+      {
+          "key": "18acb8f606f-106f",
+          "title": "商品详情",
+          "width": 200,
+          "align": "center",
+          "hidable": true,
+          "dataIndex": "description",
+          "component": "text",
+          "options": {
+              "mode": "single",
+              "ellipsis": true,
+              "maxRow": 3
+          }
+      },
+      {
+          "key": "18acb8f606f-1070",
+          "dataIndex": "",
+          "title": "链接",
+          "description": "",
+          "component": "link",
+          "options": {
+              "mode": "single",
+              "label": "google",
+              "href": "www.google.com",
+              "target": "",
+              "event": "",
+              "operates": [],
+              "tooltip": "toolip示例{{rec.name}}"
+          },
+          "align": "center"
+      },
+      {
+          "key": "18acb8f606f-1071",
+          "dataIndex": "",
+          "title": "富文本",
+          "description": "",
+          "component": "rich-text",
+          "options": {
+              "render": "<p><strong>{{rec.name}}</strong></p>",
+              "tooltip": "toolip示例{{rec.name}}"
+          },
+          "align": "center"
+      },
+      {
+          "key": "18acb8f6070-1072",
+          "title": "库存状态",
+          "width": 150,
+          "align": "center",
+          "dataIndex": "status",
+          "description": "这是一条提示信息",
+          "hidable": true,
+          "filters": [
+              {
+                  "text": "售卖中",
+                  "value": "onSale"
+              },
+              {
+                  "text": "已售罄",
+                  "value": "soldOut"
+              }
+          ],
+          "defaultFilteredValue": [
+              "onSale",
+              "soldOut"
+          ],
+          "component": "text",
+          "options": {
+              "mode": "single",
+              "i18n": {
+                  "onSale": "售卖中",
+                  "soldOut": "已售罄"
+              }
+          }
+      },
+      {
+          "key": "18acb8f6070-1073",
+          "dataIndex": "startDate",
+          "title": "日期",
+          "width": 120,
+          "description": "",
+          "component": "date-picker",
+          "options": {
+              "mode": "basic",
+              "format": "YYYY-MM-DD"
+          },
+          "align": "center"
+      },
+      {
+          "key": "18acb8f6070-1074",
+          "dataIndex": "dateRange",
+          "width": 120,
+          "title": "日期范围",
+          "description": "",
+          "component": "date-picker",
+          "options": {
+              "mode": "range",
+              "format": "YYYY-MM-DD"
+          },
+          "align": "center"
+      },
+      {
+          "key": "18acb8f6070-1075",
+          "title": "状态选择",
+          "width": 120,
+          "dataIndex": "status",
+          "component": "select",
+          "options": {
+              "style": {
+                  "width": 120
+              },
+              "options": [
+                  {
+                      "label": "售卖中",
+                      "value": "onSale"
+                  },
+                  {
+                      "label": "已售罄",
+                      "value": "soldOut"
+                  }
+              ],
+              "event": "statusToggle"
+          }
+      },
+      {
+          "key": "18acb8f6070-1076",
+          "title": "数字显示",
+          "width": 120,
+          "dataIndex": "num",
+          "component": "input-number",
+          "options": {
+              "style": {
+                  "width": 100
+              },
+              "step": 2,
+              "isEdit": true,
+              "bordered": true
+          }
+      },
+      {
+          "key": "18acb8f6070-1077",
+          "title": "商品价格",
+          "width": 150,
+          "align": "center",
+          "hidable": true,
+          "dataIndex": "price",
+          "component": "text",
+          "options": {
+              "mode": "single",
+              "prefix": "￥"
+          }
+      },
+      {
+          "key": "18acb8f6070-1078",
+          "title": "渲染组件",
+          "width": 150,
+          "align": "center",
+          "hidable": true,
+          "dataIndex": "render",
+          "component": "render-html",
+          "options": {
+              "render": "if (rec.id == 1) {\n  return '<button onclick=\"alert(\\'123\\');\" style=\\\"padding: 2px 4px;color:#52c41a; border: 1px solid #b7eb8f; border-radius: 3px; background: #f6ffed\\\">进行中</button>';\n}\nif (rec.id == 2) {\n  return '<span style=\\\"padding: 2px 4px;color:#999; border: 1px solid #999; border-radius: 3px; background: #f2f2f2\\\">已完成</span>';\n}\nreturn '';"
+          }
+      },
+      {
+          "key": "18acb8f6070-1079",
+          "title": "操作",
+          "width": 200,
+          "align": "center",
+          "fixed": "right",
+          "hidable": true,
+          "dataIndex": "operate",
+          "component": "link",
+          "options": {
+              "mode": "multiple",
+              "operates": [
+                  {
+                      "name": "order",
+                      "label": "订购",
+                      "href": "./#order",
+                      "target": "_blank"
+                  },
+                  {
+                      "name": "view",
+                      "label": "查看",
+                      "href": "./#view"
+                  },
+                  {
+                      "name": "edit",
+                      "label": "编辑",
+                      "event": "edit"
+                  },
+                  {
+                      "name": "remove",
+                      "label": "删除",
+                      "event": "remove"
+                  }
+              ]
+          }
+      }
+  ],
+  "subtable": {
+      "dataSourceKey": "subtable",
+      "id": "18acb8f6070-107a",
+      "columns": [
+          {
+              "key": "18acb8f6070-107b",
+              "title": "页面名称",
+              "align": "center",
+              "dataIndex": "name",
+              "component": "text",
+              "options": {
+                  "mode": "single",
+                  "maxRow": 1
+              }
+          },
+          {
+              "key": "18acb8f6070-107c",
+              "title": "开始/结束时间",
+              "align": "center",
+              "hidable": true,
+              "dataIndex": "description",
+              "component": "text",
+              "options": {
+                  "mode": "single",
+                  "ellipsis": true,
+                  "maxRow": 3
+              }
+          },
+          {
+              "key": "18acb8f6070-107d",
+              "title": "页面状态",
+              "align": "center",
+              "dataIndex": "status",
+              "description": "这是一条提示信息",
+              "hidable": true,
+              "filters": [
+                  {
+                      "text": "售卖中",
+                      "value": "onSale"
+                  },
+                  {
+                      "text": "已售罄",
+                      "value": "soldOut"
+                  }
+              ],
+              "defaultFilteredValue": [
+                  "onSale",
+                  "soldOut"
+              ],
+              "component": "text",
+              "options": {
+                  "mode": "single",
+                  "i18n": {
+                      "onSale": "售卖中",
+                      "soldOut": "已售罄"
+                  }
+              }
+          },
+          {
+              "key": "18acb8f6070-107e",
+              "title": "操作",
+              "align": "center",
+              "hidable": true,
+              "dataIndex": "operate",
+              "component": "link",
+              "options": {
+                  "mode": "multiple",
+                  "operates": [
+                      {
+                          "name": "order",
+                          "label": "订购",
+                          "href": "./#order",
+                          "target": "_blank"
+                      },
+                      {
+                          "name": "view",
+                          "label": "查看",
+                          "href": "./#view"
+                      },
+                      {
+                          "name": "edit",
+                          "label": "编辑",
+                          "event": "edit"
+                      },
+                      {
+                          "name": "remove",
+                          "label": "删除",
+                          "event": "remove"
+                      }
+                  ]
+              }
+          }
+      ],
+      "showHeader": false,
+      "bordered": true,
+      "subtable": {
+          "dataSourceKey": "subtableLevel2",
+          "id": "18acb8f6070-107f",
+          "columns": [
+              {
+                  "key": "18acb8f6070-1080",
+                  "title": "页面名称",
+                  "align": "center",
+                  "dataIndex": "name",
+                  "component": "text",
+                  "options": {
+                      "mode": "single",
+                      "maxRow": 1
+                  }
+              },
+              {
+                  "key": "18acb8f6070-1081",
+                  "title": "开始/结束时间",
+                  "align": "center",
+                  "hidable": true,
+                  "dataIndex": "description",
+                  "component": "text",
+                  "options": {
+                      "mode": "single",
+                      "ellipsis": true,
+                      "maxRow": 3
+                  }
+              }
+          ]
+      }
+  },
+  "layout": {
+      "card": {
+          "columns": [
+              {
+                  "key": "mock_1",
+                  "component": "image",
+                  "title": "",
+                  "options": {
+                      "imageWidth": 100
+                  },
+                  "dataIndex": "demoPic"
+              }
+          ],
+          "rowSize": 4
+      }
+  }
+}

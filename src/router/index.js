@@ -8,6 +8,9 @@ Vue.use(Router)
 import Layout from '@/layout'
 import Home from '@/views/home'
 import ComponentRender from '@/views/componentRender'
+import RouterRender from '@/views/routerRender'
+import RouterRenderVue3 from '@/views/routerRenderVue3'
+import Vue3Test from '@/views/vue3Test'
 
 const enableCustom = !!window.location.port
 const fetchOptions = {
@@ -57,6 +60,29 @@ export const constantRoutes = [
     path: '/render',
     component: ComponentRender
   },
+
+  {
+    path: '/routerRender',
+    component: RouterRender,
+    redirect: '/someModule/index',
+    children: [{
+      path: 'dashboard',
+      name: 'Dashboard',
+      component: () => import('@/views/dashboard/index'),
+      meta: { title: 'Dashboard', icon: 'dashboard' }
+    }]
+
+  },
+
+  {
+    path: '/routerRenderVue3',
+    component: RouterRenderVue3
+  },
+
+  {
+    path: '/vue3Test',
+    component: Vue3Test
+  },
   // 第一种方式
   // {
   //   path: "/someModule",
@@ -80,6 +106,7 @@ const createRouter = () =>
 
 const router = createRouter()
 
+console.log('router123===>', router)
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter()

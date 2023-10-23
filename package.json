@@ -17,6 +17,7 @@
     "axios": "0.18.1",
     "core-js": "3.6.5",
     "hel-micro": "^4.8.9",
+    "hel-tpl-remote-vue3-comps-ts": "^1.4.0",
     "js-cookie": "2.2.0",
     "lib-zhangbb": "^1.0.2",
     "lib-zhangbb-1": "^1.0.0",

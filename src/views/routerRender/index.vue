@@ -1,25 +1,16 @@
 <template>
-  <div class="hello">
-    <el-row>
-      <el-button>默认按钮</el-button>
-      <el-button type="primary">主要按钮</el-button>
-      <el-button type="success">成功按钮</el-button>
-      <el-button type="info">信息按钮</el-button>
-      <el-button type="warning">警告按钮</el-button>
-      <el-button type="danger">危险按钮</el-button>
-      <el-button @click="toRender">to Render component</el-button>
-      <el-button @click="toVue3Test">to Render vue3Test</el-button>
-    </el-row>
-    <Table />
-    <RemoteCompAsyncBetter name="loaded in codesandbox" />
+  <div>
+    <div id="routerRender" />
+    <RemoteCompAsyncBetter />
   </div>
 </template>
 
 <script>
-import Table from './table.vue'
+import Vue from 'vue'
 // https://github.com/hel-eco/hel-tpl-remote-vue-comp
-import { preFetchLib, core } from 'hel-micro'
-
+import { preFetchLib } from 'hel-micro'
+import router from '@/router'
+import App from '@/App'
 // 本地联调
 const enableCustom = !!window.location.port
 const fetchOptions = {
@@ -40,7 +31,6 @@ const fetchOptions = {
 export default {
   name: 'HelloWorld',
   components: {
-    Table,
     // RemoteCompAsyncOld: async () => {
     //   const name = "hel-tpl-remote-vue-comps";
     //   const mod = await preFetchLib(name);
@@ -55,24 +45,16 @@ export default {
         try {
           const mod = await preFetchLib('lib-zhangbb-component', fetchOptions)
           console.log('mod===>', mod)
-          r(mod.Element)
+
+          console.log('Vue=123====>', Vue.components)
+
+          const app = mod.Export(mod, 'App', 'routerRender', router,App)
+          r(app)
         } catch (err) {
           j(err)
         }
       })
     })
-  },
-  methods: {
-    toRender() {
-      this.$router.push({
-        path: '/render'
-      })
-    },
-    toVue3Test() {
-      this.$router.push({
-        path: '/vue3Test'
-      })
-    },
   }
 }
 </script>
