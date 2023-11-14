@@ -2,10 +2,10 @@ import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
-// import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-chalk/index.css'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 // import locale from 'element-ui/lib/locale/lang/en' // lang i18n
-
+import microApp from '@micro-zoe/micro-app'
 import '@/styles/index.scss' // global css
 
 import App from './App'
@@ -31,12 +31,15 @@ if (process.env.NODE_ENV === 'development') {
 // set ElementUI lang to EN
 // Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
-// Vue.use(ElementUI)
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
+microApp.start({
+  // 'disable-memory-router': true, // 关闭虚拟路由系统
+  // 'disable-patch-request': true, // 关闭对子应用请求的拦截
+})
 
-console.log('router===>', router)
 new Vue({
   el: '#app',
   router,

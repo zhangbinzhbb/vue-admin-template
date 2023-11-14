@@ -11,6 +11,7 @@ import ComponentRender from '@/views/componentRender'
 import RouterRender from '@/views/routerRender'
 import RouterRenderVue3 from '@/views/routerRenderVue3'
 import Vue3Test from '@/views/vue3Test'
+import MicroAppRender from '@/views/microAppRender'
 
 const enableCustom = !!window.location.port
 const fetchOptions = {
@@ -59,6 +60,11 @@ export const constantRoutes = [
   {
     path: '/render',
     component: ComponentRender
+  },
+
+  {
+    path: '/microAppRender',
+    component: MicroAppRender
   },
 
   {
